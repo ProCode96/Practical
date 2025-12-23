@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  .item { padding: 10px; margin: 5px; background: #e0f7fa; border-radius: 8px; }
+  .highlight { background: orange; color: white; }
+</style>
+</head>
+<body>
+
+<h3>Dynamic List</h3>
+<div id="container"></div>
+
+<button id="add">Add Item</button>
+<button id="remove">Remove Last</button>
+<button id="modify">Modify First</button>
+
+<script>
+const container = document.getElementById('container');
+let count = 1;
+document.getElementById('add').addEventListener('click', () => {
+  const div = document.createElement('div');
+  div.className = 'item';
+  div.innerHTML = `Item ${count++} <em>(new)</em>`;
+  container.append(div); // appends as last child
+});
+document.getElementById('remove').addEventListener('click', () => {
+  if (container.lastElementChild) {
+    container.lastElementChild.remove();
+  }
+});
+
+// Modify first child
+document.getElementById('modify').addEventListener('click', () => {
+  const first = container.firstElementChild;
+  if (first) {
+    first.classList.toggle('highlight');
+    first.innerHTML = 'Modified & Highlighted!';
+  }
+});
+</script>
+
+</body>
+</html>
